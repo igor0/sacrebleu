@@ -46,17 +46,6 @@ from . import __version__ as VERSION
 
 sacrelogger = logging.getLogger('sacrebleu')
 
-try:
-    # SIGPIPE is not available on Windows machines, throwing an exception.
-    from signal import SIGPIPE
-
-    # If SIGPIPE is available, change behaviour to default instead of ignore.
-    from signal import signal, SIG_DFL
-    signal(SIGPIPE, SIG_DFL)
-
-except ImportError:
-    sacrelogger.warning('Could not import signal.SIGPIPE (this is expected on Windows machines)')
-
 
 def parse_args():
     arg_parser = argparse.ArgumentParser(
